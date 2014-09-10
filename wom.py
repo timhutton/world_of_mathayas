@@ -29,33 +29,40 @@ print "My name is The Math Master."
 points = 39
 has_wooden_sword = True
 has_metal_sword = False
+has_had_bonus_point = False
+how_long_since_dog_came = 0
 while True:
     print "You currently have ",points," points!"
     if has_wooden_sword:
         print "You also have a wooden sword!"
     if has_metal_sword:
         print "You also have a metal sword!"
-    if points > 14 and not has_wooden_swordord:
+    if points > 14 and not has_wooden_sword:
         if raw_input( "You have done well. Would you like a wooden sword? It costs 4 points." ) == "yes":
             print "OK! Great! Have a wooden sword!"
             has_wooden_sword = True
             points = points - 4
-    if points > 16:
+    if points > 16 and how_long_since_dog_came > 20:
+        how_long_since_dog_came = 0
         print fierce_dog
         print "The dog of doom has come to eat your points!"
-        if has_wooden_sword:
-            print "You fight the dog with your wooden sword. He runs away. Well done! You get a bonus point!"
-            points = points + 1
+        if has_wooden_sword or has_metal_sword:
+            print "You fight the dog with your sword. He runs away. Well done!"
+            if not has_had_bonus_point:
+                print "You get a bonus point!"
+                points = points + 1
+                has_had_bonus_point = True
         else:
             print "You run away. The dog eats two of your points."
             points = points - 2
     if points > 40 and not has_metal_sword:
-        if raw_input( "You have very done well. Would you like a metal sword? It costs 20 points." ) == "yes":
+        if raw_input( "You have done very well. Would you like a metal sword? It costs 20 points." ) == "yes":
             print "OK! Great! Have a metal sword!"
             has_metal_sword = True
             points = points - 20
-    a = random.randint(3,20)
-    b = random.randint(3,20)
+    a = random.randint(3,9)
+    b = random.randint(3,9)
+    how_long_since_dog_came = how_long_since_dog_came + 1
     while True:
         try:
             answer = int(raw_input( "What is "+str(a)+" + "+str(b)+" ?" ))
